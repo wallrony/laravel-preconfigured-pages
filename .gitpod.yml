@@ -1,0 +1,15 @@
+image:
+  file: .gitpod.Dockerfile
+  context: .
+ports:
+  - port: 8000
+    onOpen: notify
+  - port: 5432
+    onOpen: ignore
+tasks:
+  - name: Start postgreSQL
+    command: >
+      clear;
+      psql -U postgres -c ALTER USER postgres PASSWORD '12345678';
+      pg_start;
+      pg_ctl status;
